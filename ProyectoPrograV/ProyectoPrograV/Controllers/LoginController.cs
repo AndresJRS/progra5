@@ -25,14 +25,13 @@ namespace ProyectoPrograV.Controllers
                 {
                     
                     var lista = db.Mecanicos.Where(x => x.UsuarioMecanico.Equals(usuario) && x.Contraseña.Equals(contraseña)).ToList();
-                    var lista2S = Session["User"];
 
                     if (lista.Count() == 1)
                     {
                         var lst = new List<Sesiones>();
                         var idUsuario = from s in lista
                                         select s.idMecanico;
-                        Session["User"] = lista.First();
+                        Session["User"] = idUsuario;
                         foreach (var user in lista)
                         {
                             var modelo = new Sesiones();

@@ -21,7 +21,7 @@ namespace ProyectoPrograV.Controllers
             using (ProyectoEntities1 db = new ProyectoEntities1())
             {
 
-                var lista2S = Session["User"];
+                var id = Session["User"];
                 var solicitud = from s in db.Solicitud
                                 join c in db.Clientes on s.idCliente equals c.idCliente
                                 where s.Estado == 0
@@ -59,7 +59,6 @@ namespace ProyectoPrograV.Controllers
         // GET: Solicituds/Create
         public ActionResult Create()
         {
-            var lista2S = Session["User"];
 
             ViewBag.idMecanico = new SelectList(db.Mecanicos, "idMecanico", "Nombre");
             return View();
@@ -72,15 +71,8 @@ namespace ProyectoPrograV.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "idSolicitud,idCliente,idMecanico,Estado,Detalle,idVehiculo,Ubicacion")] Solicitud solicitud)
         {
-           
-
-            /*foreach (var usuario in lista2S)
-            {
-                var modelo = new Sesiones();
-                modelo.id = usuario.id;
-            }*/
-
             
+
             if (ModelState.IsValid)
             {
                 db.Solicitud.Add(solicitud);

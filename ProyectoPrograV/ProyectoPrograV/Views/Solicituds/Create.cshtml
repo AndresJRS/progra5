@@ -1,5 +1,6 @@
 ﻿@model ProyectoPrograV.Models.Solicitud
 
+
 @{
     ViewBag.Title = "Reporte de averia";
     Layout = "~/Views/Shared/_LayoutClientes.cshtml";
@@ -7,15 +8,15 @@
 
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h2>Solicitud de mecanico</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
+
 
 
         <div class="form-group">

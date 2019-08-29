@@ -1,0 +1,25 @@
+﻿@model List<ProyectoPrograV.Models.Sesiones>
+@{
+    ViewBag.Title = "CrearSolicitud";
+}
+
+<h2>CrearSolicitud</h2>
+
+
+
+@if (Session["User"] != null)
+{
+    <ul>
+        @foreach (var i in Model)
+        {
+            <li>
+                @i
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <h3 style="color:red">No has seleccionado ingredientes</h3>
+}
+
