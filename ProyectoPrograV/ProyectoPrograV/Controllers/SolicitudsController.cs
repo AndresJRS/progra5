@@ -22,20 +22,22 @@ namespace ProyectoPrograV.Controllers
             {
                 var solicitud = from s in db.Solicitud
                                 join c in db.Clientes on s.idCliente equals c.idCliente
+                                join cv in db.ClienteVehiculoes on s.idCliente equals cv.idCliente
+                                join v in db.Vehiculos on cv.idVehiculo equals v.IdVehiculo
                                 where s.Estado == 0
-                                select new { nombre = c.Nombre, telefono = c.Telefono, s.Detalle, s.idSolicitud };
+                                select new { nombre = c.Nombre, telefono = c.Telefono, detalle = s.Detalle, placa = v.Placa,s.idSolicitud};
                 var lista = new List<Solicitudes>();
                 foreach (var user in solicitud.ToList()) {
                     var modelo = new Solicitudes();
                     modelo.Nombre = user.nombre;
                     modelo.Telefono = user.telefono;
-                    modelo.Detalle = user.Detalle;
+                    modelo.Detalle = user.detalle;
+                    modelo.Placa = user.placa;
                     modelo.id = user.idSolicitud;
                     lista.Add(modelo);
                 }
                 return View(lista);
             }
-                //var solicitud = db.Solicitud.Include(s => s.Clientes).Include(s => s.Mecanicos);
 
         }
 
@@ -149,6 +151,11 @@ namespace ProyectoPrograV.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult ActualizarEstado(int idSolicitud)
+        {
+
         }
     }
 }
