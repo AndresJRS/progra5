@@ -141,6 +141,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginCController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MecanicosController.cs" />
     <Compile Include="Controllers\SolicitudsController.cs" />
     <Compile Include="Controllers\VehiculosController.cs" />
     <Compile Include="Global.asax.cs">

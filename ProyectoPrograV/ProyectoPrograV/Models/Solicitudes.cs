@@ -10,6 +10,7 @@ namespace ProyectoPrograV.Models
         public string Nombre{ get; set; }
         public string Telefono { get; set; }
         public string Detalle { get; set; }
+        public string Placa { get; set; }
         public int id { get; set; }
     }
 }
