@@ -20,6 +20,7 @@ namespace ProyectoPrograV.Controllers
             //0 solicitud pendiente y 1 solicitud completa
             using (ProyectoEntities1 db = new ProyectoEntities1())
             {
+                var lista2S = Session["User"];
                 var solicitud = from s in db.Solicitud
                                 join c in db.Clientes on s.idCliente equals c.idCliente
                                 where s.Estado == 0
