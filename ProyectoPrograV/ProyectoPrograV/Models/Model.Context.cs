@@ -30,6 +30,6 @@ namespace ProyectoPrograV.Models
         public virtual DbSet<Factura> Facturas { get; set; }
         public virtual DbSet<Mecanico> Mecanicos { get; set; }
         public virtual DbSet<Vehiculo> Vehiculos { get; set; }
-        public virtual DbSet<Solicitud> Solicituds { get; set; }
+        public virtual DbSet<Solicitud> Solicitud { get; set; }
     }
 }
