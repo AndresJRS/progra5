@@ -46,19 +46,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Solicituds">
-      <EntityTypeMapping TypeName="ProyectoModel.Solicitud">
-        <MappingFragment StoreEntitySet="Solicitud">
-          <ScalarProperty Name="idSolicitud" ColumnName="idSolicitud" />
-          <ScalarProperty Name="idCliente" ColumnName="idCliente" />
-          <ScalarProperty Name="idMecanico" ColumnName="idMecanico" />
-          <ScalarProperty Name="Estado" ColumnName="Estado" />
-          <ScalarProperty Name="Detalle" ColumnName="Detalle" />
-          <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
-          <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Vehiculos">
       <EntityTypeMapping TypeName="ProyectoModel.Vehiculo">
         <MappingFragment StoreEntitySet="Vehiculos">
@@ -67,6 +54,19 @@
           <ScalarProperty Name="Marca" ColumnName="Marca" />
           <ScalarProperty Name="Modelo" ColumnName="Modelo" />
           <ScalarProperty Name="Color" ColumnName="Color" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Solicituds">
+      <EntityTypeMapping TypeName="ProyectoModel.Solicitud">
+        <MappingFragment StoreEntitySet="Solicitud">
+          <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+          <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
+          <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="idMecanico" ColumnName="idMecanico" />
+          <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+          <ScalarProperty Name="idSolicitud" ColumnName="idSolicitud" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

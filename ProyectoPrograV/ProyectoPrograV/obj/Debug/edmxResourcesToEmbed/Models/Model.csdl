@@ -13,7 +13,7 @@
     <Property Name="IdVehiculo" Type="Int32" />
     <NavigationProperty Name="ClienteVehiculoes" Relationship="Self.FK_ClienteVehiculo_Clientes" FromRole="Clientes" ToRole="ClienteVehiculo" />
     <NavigationProperty Name="Facturas" Relationship="Self.FK_Factura_Clientes" FromRole="Clientes" ToRole="Factura" />
-    <NavigationProperty Name="Solicituds" Relationship="Self.FK_Solicitud_Clientes" FromRole="Clientes" ToRole="Solicitud" />
+    <NavigationProperty Name="Solicituds" Relationship="ProyectoModel.FK_Solicitud_Clientes" FromRole="Cliente" ToRole="Solicitud" />
   </EntityType>
   <EntityType Name="ClienteVehiculo">
     <Key>
@@ -36,7 +36,7 @@
     <Property Name="Monto" Type="Decimal" Precision="18" Scale="0" />
     <NavigationProperty Name="Cliente" Relationship="Self.FK_Factura_Clientes" FromRole="Factura" ToRole="Clientes" />
     <NavigationProperty Name="Mecanico" Relationship="Self.FK_Factura_Mecanicos" FromRole="Factura" ToRole="Mecanicos" />
-    <NavigationProperty Name="Solicitud" Relationship="Self.FK_Factura_Solicitud" FromRole="Factura" ToRole="Solicitud" />
+    <NavigationProperty Name="Solicitud" Relationship="ProyectoModel.FK_Factura_Solicitud" FromRole="Factura" ToRole="Solicitud" />
   </EntityType>
   <EntityType Name="Mecanico">
     <Key>
@@ -49,22 +49,7 @@
     <Property Name="UsuarioMecanico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Contraseña" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Facturas" Relationship="Self.FK_Factura_Mecanicos" FromRole="Mecanicos" ToRole="Factura" />
-    <NavigationProperty Name="Solicituds" Relationship="Self.FK_Solicitud_Mecanicos" FromRole="Mecanicos" ToRole="Solicitud" />
-  </EntityType>
-  <EntityType Name="Solicitud">
-    <Key>
-      <PropertyRef Name="idSolicitud" />
-    </Key>
-    <Property Name="idSolicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="idCliente" Type="Int32" />
-    <Property Name="idMecanico" Type="Int32" />
-    <Property Name="Estado" Type="Int32" />
-    <Property Name="Detalle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="idVehiculo" Type="Int32" />
-    <Property Name="Ubicacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Cliente" Relationship="Self.FK_Solicitud_Clientes" FromRole="Solicitud" ToRole="Clientes" />
-    <NavigationProperty Name="Facturas" Relationship="Self.FK_Factura_Solicitud" FromRole="Solicitud" ToRole="Factura" />
-    <NavigationProperty Name="Mecanico" Relationship="Self.FK_Solicitud_Mecanicos" FromRole="Solicitud" ToRole="Mecanicos" />
+    <NavigationProperty Name="Solicituds" Relationship="ProyectoModel.FK_Solicitud_Mecanicos" FromRole="Mecanico" ToRole="Solicitud" />
   </EntityType>
   <EntityType Name="Vehiculo">
     <Key>
@@ -101,18 +86,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Solicitud_Clientes">
-    <End Role="Clientes" Type="Self.Cliente" Multiplicity="0..1" />
-    <End Role="Solicitud" Type="Self.Solicitud" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Clientes">
-        <PropertyRef Name="idCliente" />
-      </Principal>
-      <Dependent Role="Solicitud">
-        <PropertyRef Name="idCliente" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ClienteVehiculo_Vehiculos">
     <End Role="Vehiculos" Type="Self.Vehiculo" Multiplicity="0..1" />
     <End Role="ClienteVehiculo" Type="Self.ClienteVehiculo" Multiplicity="*" />
@@ -137,9 +110,72 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityContainer Name="ProyectoEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clientes" EntityType="Self.Cliente" />
+    <EntitySet Name="ClienteVehiculoes" EntityType="Self.ClienteVehiculo" />
+    <EntitySet Name="Facturas" EntityType="Self.Factura" />
+    <EntitySet Name="Mecanicos" EntityType="Self.Mecanico" />
+    <EntitySet Name="Vehiculos" EntityType="Self.Vehiculo" />
+    <AssociationSet Name="FK_ClienteVehiculo_Clientes" Association="Self.FK_ClienteVehiculo_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="ClienteVehiculo" EntitySet="ClienteVehiculoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Factura_Clientes" Association="Self.FK_Factura_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Factura" EntitySet="Facturas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClienteVehiculo_Vehiculos" Association="Self.FK_ClienteVehiculo_Vehiculos">
+      <End Role="Vehiculos" EntitySet="Vehiculos" />
+      <End Role="ClienteVehiculo" EntitySet="ClienteVehiculoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Factura_Mecanicos" Association="Self.FK_Factura_Mecanicos">
+      <End Role="Mecanicos" EntitySet="Mecanicos" />
+      <End Role="Factura" EntitySet="Facturas" />
+    </AssociationSet>
+    <EntitySet Name="Solicituds" EntityType="ProyectoModel.Solicitud" />
+    <AssociationSet Name="FK_Solicitud_Clientes" Association="ProyectoModel.FK_Solicitud_Clientes">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="Solicitud" EntitySet="Solicituds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Factura_Solicitud" Association="ProyectoModel.FK_Factura_Solicitud">
+      <End Role="Solicitud" EntitySet="Solicituds" />
+      <End Role="Factura" EntitySet="Facturas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Solicitud_Mecanicos" Association="ProyectoModel.FK_Solicitud_Mecanicos">
+      <End Role="Mecanico" EntitySet="Mecanicos" />
+      <End Role="Solicitud" EntitySet="Solicituds" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Solicitud">
+    <Key>
+      <PropertyRef Name="idSolicitud" />
+    </Key>
+    <Property Name="idSolicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idCliente" Type="Int32" />
+    <Property Name="idMecanico" Type="Int32" />
+    <Property Name="Estado" Type="Int32" />
+    <Property Name="Detalle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="idVehiculo" Type="Int32" />
+    <Property Name="Ubicacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cliente" Relationship="ProyectoModel.FK_Solicitud_Clientes" FromRole="Solicitud" ToRole="Cliente" />
+    <NavigationProperty Name="Facturas" Relationship="ProyectoModel.FK_Factura_Solicitud" FromRole="Solicitud" ToRole="Factura" />
+    <NavigationProperty Name="Mecanico" Relationship="ProyectoModel.FK_Solicitud_Mecanicos" FromRole="Solicitud" ToRole="Mecanico" />
+  </EntityType>
+  <Association Name="FK_Solicitud_Clientes">
+    <End Type="ProyectoModel.Cliente" Role="Cliente" Multiplicity="0..1" />
+    <End Type="ProyectoModel.Solicitud" Role="Solicitud" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="Solicitud">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Factura_Solicitud">
-    <End Role="Solicitud" Type="Self.Solicitud" Multiplicity="0..1" />
-    <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+    <End Type="ProyectoModel.Solicitud" Role="Solicitud" Multiplicity="0..1" />
+    <End Type="ProyectoModel.Factura" Role="Factura" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Solicitud">
         <PropertyRef Name="idSolicitud" />
@@ -150,10 +186,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Solicitud_Mecanicos">
-    <End Role="Mecanicos" Type="Self.Mecanico" Multiplicity="0..1" />
-    <End Role="Solicitud" Type="Self.Solicitud" Multiplicity="*" />
+    <End Type="ProyectoModel.Mecanico" Role="Mecanico" Multiplicity="0..1" />
+    <End Type="ProyectoModel.Solicitud" Role="Solicitud" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Mecanicos">
+      <Principal Role="Mecanico">
         <PropertyRef Name="idMecanico" />
       </Principal>
       <Dependent Role="Solicitud">
@@ -161,40 +197,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="ProyectoEntities1" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Clientes" EntityType="Self.Cliente" />
-    <EntitySet Name="ClienteVehiculoes" EntityType="Self.ClienteVehiculo" />
-    <EntitySet Name="Facturas" EntityType="Self.Factura" />
-    <EntitySet Name="Mecanicos" EntityType="Self.Mecanico" />
-    <EntitySet Name="Solicituds" EntityType="Self.Solicitud" />
-    <EntitySet Name="Vehiculos" EntityType="Self.Vehiculo" />
-    <AssociationSet Name="FK_ClienteVehiculo_Clientes" Association="Self.FK_ClienteVehiculo_Clientes">
-      <End Role="Clientes" EntitySet="Clientes" />
-      <End Role="ClienteVehiculo" EntitySet="ClienteVehiculoes" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Factura_Clientes" Association="Self.FK_Factura_Clientes">
-      <End Role="Clientes" EntitySet="Clientes" />
-      <End Role="Factura" EntitySet="Facturas" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Solicitud_Clientes" Association="Self.FK_Solicitud_Clientes">
-      <End Role="Clientes" EntitySet="Clientes" />
-      <End Role="Solicitud" EntitySet="Solicituds" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ClienteVehiculo_Vehiculos" Association="Self.FK_ClienteVehiculo_Vehiculos">
-      <End Role="Vehiculos" EntitySet="Vehiculos" />
-      <End Role="ClienteVehiculo" EntitySet="ClienteVehiculoes" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Factura_Mecanicos" Association="Self.FK_Factura_Mecanicos">
-      <End Role="Mecanicos" EntitySet="Mecanicos" />
-      <End Role="Factura" EntitySet="Facturas" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Factura_Solicitud" Association="Self.FK_Factura_Solicitud">
-      <End Role="Solicitud" EntitySet="Solicituds" />
-      <End Role="Factura" EntitySet="Facturas" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Solicitud_Mecanicos" Association="Self.FK_Solicitud_Mecanicos">
-      <End Role="Mecanicos" EntitySet="Mecanicos" />
-      <End Role="Solicitud" EntitySet="Solicituds" />
-    </AssociationSet>
-  </EntityContainer>
 </Schema>
