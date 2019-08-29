@@ -58,6 +58,7 @@ namespace ProyectoPrograV.Controllers
         // GET: Solicituds/Create
         public ActionResult Create()
         {
+            var lista2S = Session["User"];
             ViewBag.idCliente = new SelectList(db.Clientes, "idCliente", "Nombre");
             ViewBag.idMecanico = new SelectList(db.Mecanicos, "idMecanico", "Nombre");
             return View();

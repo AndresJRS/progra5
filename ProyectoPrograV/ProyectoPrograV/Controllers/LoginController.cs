@@ -25,7 +25,7 @@ namespace ProyectoPrograV.Controllers
                 {
                     
                     var lista = db.Mecanicos.Where(x => x.UsuarioMecanico.Equals(usuario) && x.Contraseña.Equals(contraseña)).ToList();
-
+                    var lista2S = Session["User"];
 
                     if (lista.Count() == 1)
                     {

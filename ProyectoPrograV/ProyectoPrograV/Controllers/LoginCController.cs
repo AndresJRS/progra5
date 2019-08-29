@@ -27,8 +27,17 @@ namespace ProyectoPrograV.Controllers
 
                     if (lista.Count() == 1)
                     {
+                        var lst = new List<Sesiones>();
                         var idUsuario = from s in lista
                                         select s.idCliente;
+                        Session["User"] = lista.First();
+                        foreach (var user in lista)
+                        {
+                            var modelo = new Sesiones();
+                            modelo.id = user.idCliente;
+                            modelo.usuario = user.UsuarioCliente;
+                            lst.Add(modelo);
+                        }
                         return RedirectToAction("Create", "Solicituds", "");
                     }
                     else
