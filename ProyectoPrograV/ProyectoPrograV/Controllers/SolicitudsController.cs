@@ -20,6 +20,7 @@ namespace ProyectoPrograV.Controllers
             //0 solicitud pendiente y 1 solicitud completa
             using (ProyectoEntities1 db = new ProyectoEntities1())
             {
+
                 var lista2S = Session["User"];
                 var solicitud = from s in db.Solicitud
                                 join c in db.Clientes on s.idCliente equals c.idCliente
@@ -59,7 +60,7 @@ namespace ProyectoPrograV.Controllers
         public ActionResult Create()
         {
             var lista2S = Session["User"];
-            ViewBag.idCliente = new SelectList(db.Clientes, "idCliente", "Nombre");
+
             ViewBag.idMecanico = new SelectList(db.Mecanicos, "idMecanico", "Nombre");
             return View();
         }
@@ -71,6 +72,15 @@ namespace ProyectoPrograV.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "idSolicitud,idCliente,idMecanico,Estado,Detalle,idVehiculo,Ubicacion")] Solicitud solicitud)
         {
+           
+
+            /*foreach (var usuario in lista2S)
+            {
+                var modelo = new Sesiones();
+                modelo.id = usuario.id;
+            }*/
+
+            
             if (ModelState.IsValid)
             {
                 db.Solicitud.Add(solicitud);
@@ -86,6 +96,7 @@ namespace ProyectoPrograV.Controllers
         // GET: Solicituds/Edit/5
         public ActionResult Edit(int? id)
         {
+             var lista2S = Session["User"];
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
