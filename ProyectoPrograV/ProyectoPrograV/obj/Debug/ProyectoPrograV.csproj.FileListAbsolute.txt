@@ -269,7 +269,6 @@ D:\Users\lungc\Documents\Visual Studio 2019\Projects\ProyectoPrograV\ProyectoPro
 D:\Users\lungc\Documents\Visual Studio 2019\Projects\ProyectoPrograV\ProyectoPrograV\obj\Debug\ProyectoPrograV.csproj.CopyComplete
 D:\Users\lungc\Documents\Visual Studio 2019\Projects\ProyectoPrograV\ProyectoPrograV\obj\Debug\ProyectoPrograV.dll
 D:\Users\lungc\Documents\Visual Studio 2019\Projects\ProyectoPrograV\ProyectoPrograV\obj\Debug\ProyectoPrograV.pdb
-C:\Users\Andres\Documents\GitHub\progra5\ProyectoPrograV\ProyectoPrograV\obj\Debug\ProyectoPrograV.csprojAssemblyReference.cache
 C:\Users\Andres\Documents\GitHub\progra5\ProyectoPrograV\ProyectoPrograV\obj\Debug\ProyectoPrograV.csproj.CoreCompileInputs.cache
 C:\Users\Andres\Documents\GitHub\progra5\ProyectoPrograV\ProyectoPrograV\obj\Debug\ProyectoPrograV.dll
 C:\Users\Andres\Documents\GitHub\progra5\ProyectoPrograV\ProyectoPrograV\obj\Debug\ProyectoPrograV.pdb
@@ -455,3 +454,4 @@ D:\Users\lungc\Documents\GitHub\progra5\ProyectoPrograV\ProyectoPrograV\obj\Debu
 D:\Users\lungc\Documents\GitHub\progra5\ProyectoPrograV\ProyectoPrograV\obj\Debug\ProyectoPrograV.csproj.CopyComplete
 D:\Users\lungc\Documents\GitHub\progra5\ProyectoPrograV\ProyectoPrograV\obj\Debug\ProyectoPrograV.dll
 D:\Users\lungc\Documents\GitHub\progra5\ProyectoPrograV\ProyectoPrograV\obj\Debug\ProyectoPrograV.pdb
+C:\Users\Andres\Documents\GitHub\progra5\ProyectoPrograV\ProyectoPrograV\obj\Debug\ProyectoPrograV.csprojAssemblyReference.cache

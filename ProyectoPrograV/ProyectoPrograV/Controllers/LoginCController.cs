@@ -28,9 +28,9 @@ namespace ProyectoPrograV.Controllers
                     if (lista.Count() == 1)
                     {
                         var lst = new List<Sesiones>();
-                        var idUsuario = from s in lista
-                                        select s.idCliente;
-                        Session["User"] = lista.First();
+                        var idUsuario = (from s in lista
+                                        select s.idCliente).First();
+                        Session["User"] = idUsuario;
                         foreach (var user in lista)
                         {
                             var modelo = new Sesiones();
@@ -38,7 +38,7 @@ namespace ProyectoPrograV.Controllers
                             modelo.usuario = user.UsuarioCliente;
                             lst.Add(modelo);
                         }
-                        return RedirectToAction("Create", "Solicituds", "");
+                        return RedirectToAction("Create", "Vehiculoes", "");
                     }
                     else
                     {

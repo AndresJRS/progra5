@@ -21,7 +21,7 @@ namespace ProyectoPrograV.Controllers
             using (ProyectoEntities1 db = new ProyectoEntities1())
             {
 
-                var lista2S = Session["User"];
+                
                 var solicitud = from s in db.Solicitud
                                 join c in db.Clientes on s.idCliente equals c.idCliente
                                 where s.Estado == 0
@@ -59,9 +59,6 @@ namespace ProyectoPrograV.Controllers
         // GET: Solicituds/Create
         public ActionResult Create()
         {
-            var lista2S = Session["User"];
-
-            ViewBag.idMecanico = new SelectList(db.Mecanicos, "idMecanico", "Nombre");
             return View();
         }
 
@@ -70,17 +67,19 @@ namespace ProyectoPrograV.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idSolicitud,idCliente,idMecanico,Estado,Detalle,idVehiculo,Ubicacion")] Solicitud solicitud)
+        public ActionResult Create(ClienteSolicita modelo)
         {
-           
 
-            /*foreach (var usuario in lista2S)
-            {
-                var modelo = new Sesiones();
-                modelo.id = usuario.id;
-            }*/
+          Solicitud solicitud = new Solicitud();
 
-            
+            int id = (int)Session["User"];
+            int vehiculo = (int)Session["Vehiculo"];
+            solicitud.idCliente = id;
+            solicitud.Detalle = modelo.Detalle;
+            solicitud.Ubicacion = modelo.Ubicacion;
+            solicitud.Estado = 0;
+            solicitud.idVehiculo = vehiculo;
+
             if (ModelState.IsValid)
             {
                 db.Solicitud.Add(solicitud);
@@ -88,8 +87,6 @@ namespace ProyectoPrograV.Controllers
                 return RedirectToAction("Create");
             }
 
-            ViewBag.idCliente = new SelectList(db.Clientes, "idCliente", "Nombre", solicitud.idCliente);
-            ViewBag.idMecanico = new SelectList(db.Mecanicos, "idMecanico", "Nombre", solicitud.idMecanico);
             return View(solicitud);
         }
 
