@@ -1,20 +1,21 @@
-﻿@model ProyectoPrograV.Models.Vehiculos
+﻿@model ProyectoPrograV.Models.Vehiculo
 
 @{
-    ViewBag.Title = "Registro de vehiculo";
-    Layout = "~/Views/Shared/_LayoutClientes.cshtml";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Vehiculos</h4>
+        <h4>Vehiculo</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IdVehiculo)
+
         <div class="form-group">
             @Html.LabelFor(model => model.Placa, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -49,7 +50,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
