@@ -38,7 +38,7 @@ namespace ProyectoPrograV.Controllers
                             modelo.usuario = user.UsuarioCliente;
                             lst.Add(modelo);
                         }
-                        return RedirectToAction("Create", "Solicituds", "");
+                        return RedirectToAction("Create", "Vehiculoes", "");
                     }
                     else
                     {

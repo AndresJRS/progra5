@@ -69,13 +69,16 @@ namespace ProyectoPrograV.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ClienteSolicita modelo)
         {
-            Solicitud solicitud = new Solicitud();
+
+          Solicitud solicitud = new Solicitud();
 
             int id = (int)Session["User"];
+            int vehiculo = (int)Session["Vehiculo"];
             solicitud.idCliente = id;
             solicitud.Detalle = modelo.Detalle;
             solicitud.Ubicacion = modelo.Ubicacion;
             solicitud.Estado = 0;
+            solicitud.idVehiculo = vehiculo;
 
             if (ModelState.IsValid)
             {

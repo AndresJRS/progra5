@@ -138,9 +138,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ClientesRegistroController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginCController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RegistroMecanicoesController.cs" />
     <Compile Include="Controllers\SolicitudsController.cs" />
     <Compile Include="Controllers\VehiculoesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -174,6 +176,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\RegistroVehiculos.cs" />
     <Compile Include="Models\Sesiones.cs" />
     <Compile Include="Models\Solicitud.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -251,6 +254,18 @@
     <Content Include="Views\Vehiculoes\Details.cshtml" />
     <Content Include="Views\Vehiculoes\Edit.cshtml" />
     <Content Include="Views\Vehiculoes\Index.cshtml" />
+    <Content Include="Views\RegistroMecanicoes\Create.cshtml" />
+    <Content Include="Views\RegistroMecanicoes\Delete.cshtml" />
+    <Content Include="Views\RegistroMecanicoes\Details.cshtml" />
+    <Content Include="Views\RegistroMecanicoes\Edit.cshtml" />
+    <Content Include="Views\RegistroMecanicoes\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutRegistroMecanicos.cshtml" />
+    <Content Include="Views\Shared\_LayoutRegistroClientes.cshtml" />
+    <Content Include="Views\ClientesRegistro\Create.cshtml" />
+    <Content Include="Views\ClientesRegistro\Delete.cshtml" />
+    <Content Include="Views\ClientesRegistro\Details.cshtml" />
+    <Content Include="Views\ClientesRegistro\Edit.cshtml" />
+    <Content Include="Views\ClientesRegistro\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

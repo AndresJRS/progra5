@@ -10,120 +10,107 @@ using ProyectoPrograV.Models;
 
 namespace ProyectoPrograV.Controllers
 {
-    public class VehiculoesController : Controller
+    public class ClientesRegistroController : Controller
     {
         private ProyectoEntities1 db = new ProyectoEntities1();
 
-        // GET: Vehiculoes
+        // GET: ClientesRegistro
         public ActionResult Index()
         {
-            return View(db.Vehiculos.ToList());
+            return View(db.Clientes.ToList());
         }
 
-        
-
-        // GET: Vehiculoes/Details/5
+        // GET: ClientesRegistro/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vehiculo vehiculo = db.Vehiculos.Find(id);
-            if (vehiculo == null)
+            Cliente cliente = db.Clientes.Find(id);
+            if (cliente == null)
             {
                 return HttpNotFound();
             }
-            return View(vehiculo);
+            return View(cliente);
         }
 
-        // GET: Vehiculoes/Create
+        // GET: ClientesRegistro/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Vehiculoes/Create
+        // POST: ClientesRegistro/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( RegistroVehiculos vehiculo)
+        public ActionResult Create([Bind(Include = "idCliente,Nombre,Email,Telefono,UsuarioCliente,Contraseña,IdVehiculo")] Cliente cliente)
         {
-            Vehiculo v = new Vehiculo();
-
-
-            v.Placa = vehiculo.Placa;
-            v.Marca = vehiculo.Marca;
-            v.Modelo = vehiculo.Modelo;
-            v.Color = vehiculo.Color;
-
-
             if (ModelState.IsValid)
             {
-                
-                db.Vehiculos.Add(v);
-         
+                db.Clientes.Add(cliente);
                 db.SaveChanges();
-                Session["Vehiculo"] = v.IdVehiculo;
-
-
-                return RedirectToAction("Create");
+                return RedirectToAction("Index", "LoginC");
             }
-            
-            return View(v);
+
+            return View(cliente);
         }
 
-
-     
-
-        // GET: Vehiculoes/Edit/5
+        // GET: ClientesRegistro/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vehiculo vehiculo = db.Vehiculos.Find(id);
-            if (vehiculo == null)
+            Cliente cliente = db.Clientes.Find(id);
+            if (cliente == null)
             {
                 return HttpNotFound();
             }
-            return View(vehiculo);
+            return View(cliente);
         }
 
-        // POST: Vehiculoes/Edit/5
+        // POST: ClientesRegistro/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(RegistroVehiculos vehiculo)
+        public ActionResult Edit([Bind(Include = "idCliente,Nombre,Email,Telefono,UsuarioCliente,Contraseña,IdVehiculo")] Cliente cliente)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                db.Entry(cliente).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(cliente);
         }
 
-        // GET: Vehiculoes/Delete/5
+        // GET: ClientesRegistro/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vehiculo vehiculo = db.Vehiculos.Find(id);
-            if (vehiculo == null)
+            Cliente cliente = db.Clientes.Find(id);
+            if (cliente == null)
             {
                 return HttpNotFound();
             }
-            return View(vehiculo);
+            return View(cliente);
         }
 
-        // POST: Vehiculoes/Delete/5
+        // POST: ClientesRegistro/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Vehiculo vehiculo = db.Vehiculos.Find(id);
-            db.Vehiculos.Remove(vehiculo);
+            Cliente cliente = db.Clientes.Find(id);
+            db.Clientes.Remove(cliente);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
