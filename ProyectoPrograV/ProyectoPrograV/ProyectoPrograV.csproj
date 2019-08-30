@@ -251,6 +251,7 @@
     <Content Include="Views\Vehiculos\Details.cshtml" />
     <Content Include="Views\Vehiculos\Edit.cshtml" />
     <Content Include="Views\Vehiculos\Index.cshtml" />
+    <Content Include="Views\Mecanicos\ActualizarEstado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

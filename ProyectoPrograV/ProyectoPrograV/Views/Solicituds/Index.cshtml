@@ -43,7 +43,10 @@
                 @Html.DisplayFor(modelItem => item.Placa)
             </td>
             <td>
-                <form action="@Url.Content("~/Mecanicos/ActualizarEstado")"><button type="submit" class="btn btn-success">Aceptar</button></form>
+                <form action="@Url.Content("~/Mecanicos/ActualizarEstado")">
+                    <input type="text" name="idSolicitud" value="@item.id" hidden/>
+                    <button type="submit" class="btn btn-success">Aceptar</button>
+                </form>
                 
             </td>
         </tr>
