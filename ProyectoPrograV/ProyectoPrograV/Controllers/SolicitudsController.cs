@@ -75,6 +75,7 @@ namespace ProyectoPrograV.Controllers
             solicitud.idCliente = id;
             solicitud.Detalle = modelo.Detalle;
             solicitud.Ubicacion = modelo.Ubicacion;
+            solicitud.Estado = 0;
 
             if (ModelState.IsValid)
             {
