@@ -138,7 +138,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginCController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -150,6 +149,7 @@
     <Compile Include="Models\Cliente.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClienteSolicita.cs" />
     <Compile Include="Models\ClienteVehiculo.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -251,7 +251,6 @@
     <Content Include="Views\Vehiculos\Details.cshtml" />
     <Content Include="Views\Vehiculos\Edit.cshtml" />
     <Content Include="Views\Vehiculos\Index.cshtml" />
-    <Content Include="Views\Cliente\CrearSolicitud.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

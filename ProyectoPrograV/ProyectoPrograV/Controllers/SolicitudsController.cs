@@ -21,7 +21,7 @@ namespace ProyectoPrograV.Controllers
             using (ProyectoEntities1 db = new ProyectoEntities1())
             {
 
-                var id = Session["User"];
+                
                 var solicitud = from s in db.Solicitud
                                 join c in db.Clientes on s.idCliente equals c.idCliente
                                 where s.Estado == 0
@@ -59,8 +59,6 @@ namespace ProyectoPrograV.Controllers
         // GET: Solicituds/Create
         public ActionResult Create()
         {
-
-            ViewBag.idMecanico = new SelectList(db.Mecanicos, "idMecanico", "Nombre");
             return View();
         }
 
@@ -69,9 +67,14 @@ namespace ProyectoPrograV.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idSolicitud,idCliente,idMecanico,Estado,Detalle,idVehiculo,Ubicacion")] Solicitud solicitud)
+        public ActionResult Create(ClienteSolicita modelo)
         {
-            
+            Solicitud solicitud = new Solicitud();
+
+            int id = (int)Session["User"];
+            solicitud.idCliente = id;
+            solicitud.Detalle = modelo.Detalle;
+            solicitud.Ubicacion = modelo.Ubicacion;
 
             if (ModelState.IsValid)
             {
@@ -80,8 +83,6 @@ namespace ProyectoPrograV.Controllers
                 return RedirectToAction("Create");
             }
 
-            ViewBag.idCliente = new SelectList(db.Clientes, "idCliente", "Nombre", solicitud.idCliente);
-            ViewBag.idMecanico = new SelectList(db.Mecanicos, "idMecanico", "Nombre", solicitud.idMecanico);
             return View(solicitud);
         }
 
