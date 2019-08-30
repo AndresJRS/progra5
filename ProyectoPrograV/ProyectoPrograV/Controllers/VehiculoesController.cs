@@ -52,7 +52,7 @@ namespace ProyectoPrograV.Controllers
             {
                 db.Vehiculos.Add(vehiculo);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             return View(vehiculo);
