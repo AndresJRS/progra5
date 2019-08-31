@@ -24,6 +24,7 @@ namespace ProyectoPrograV.Controllers
             {
                 using (ProyectoEntities1 db = new ProyectoEntities1())
                 {
+
                     var lista = db.Mecanicos.Where(x => x.UsuarioMecanico.Equals(usuario) && x.Contraseña.Equals(contraseña)).ToList();
                     if (lista.Count() == 1)
                     {
@@ -37,6 +38,7 @@ namespace ProyectoPrograV.Controllers
                     {
                         return Content("Usuario invalido");
                     }
+
                 }
 
             }

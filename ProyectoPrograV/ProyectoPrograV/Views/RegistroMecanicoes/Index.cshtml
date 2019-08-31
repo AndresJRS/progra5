@@ -22,6 +22,15 @@
             @Html.DisplayNameFor(model => model.Placa)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Marca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Color)
+        </th>
+        <th>
             Acciones
         </th>
         <th></th>
@@ -29,26 +38,35 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Detalle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Placa)
-            </td>
-            <td>
-                <form action="@Url.Content("~/RegistroMecanicoes/ActualizarEstado")">
-                    <input type="text" name="idSolicitud" value="@item.id" hidden />
-                    <button type="submit" class="btn btn-success">Aceptar</button>
-                </form>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Telefono)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Detalle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Placa)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Marca)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Modelo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Color)
+    </td>
+    <td>
+        <form action="@Url.Content("~/RegistroMecanicoes/ActualizarEstado")" method="post">
+            <input type="text" name="idSolicitud" value="@item.id" hidden />
+            <button type="submit" class="btn btn-success">Aceptar</button>
+        </form>
 
-            </td>
-        </tr>
+    </td>
+</tr>
     }
 </table>

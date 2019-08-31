@@ -135,7 +135,7 @@ namespace ProyectoPrograV.Controllers
                 using (ProyectoEntities1 db = new ProyectoEntities1())
                 {
                     var user = (from s in db.Solicitud
-                                where s.idSolicitud == 1
+                                where s.idSolicitud == idSolicitud
                                 select s).First();
                     user.Estado = 1;
                     db.SaveChanges();
@@ -167,9 +167,77 @@ namespace ProyectoPrograV.Controllers
             return View(lista);
         }
 
-        public ActionResult Arreglado()
+        public ActionResult Facturar(int? idSolicitud)
         {
-            return null;
+            int id = (int)Session["User"];
+            if (id != 0)
+            {
+                using (ProyectoEntities1 db = new ProyectoEntities1())
+                {
+                    var user = (from s in db.Solicitud
+                                where s.idSolicitud == idSolicitud
+                                select s).First();
+                    user.Estado = 2;
+                    db.SaveChanges();
+                }
+                
+                Facturas(idSolicitud, id);
+                
+            }
+            return RedirectToAction("Index", "Solicituds", "");
+        }
+
+        public void Facturas(int? idSoli, int id)
+        {
+            Random rnd = new Random();
+            var factura = new Factura();
+            using (ProyectoEntities1 db = new ProyectoEntities1())
+            {
+                var user = (from s in db.Solicitud
+                            where s.idSolicitud == idSoli
+                            select s).First();
+                var solicitudLista = from s in db.Solicitud
+                                     join c in db.Clientes on s.idCliente equals c.idCliente
+                                     join cv in db.ClienteVehiculoes on s.idCliente equals cv.idCliente
+                                     join v in db.Vehiculos on cv.idVehiculo equals v.IdVehiculo
+                                     where v.IdVehiculo == user.idVehiculo
+                                     select new { idcliente = c.idCliente, idsolicitud = s.idSolicitud, nombreCliente = c.Nombre};
+                foreach (var solicitud in solicitudLista)
+                {
+                    factura.idCliente = solicitud.idcliente;
+                    factura.idMecanico = user.idMecanico;
+                    factura.idSolicitud = solicitud.idsolicitud;
+                    factura.Monto = rnd.Next(10000,1000000);
+                }
+
+            }
+
+            db.Facturas.Add(factura);
+            db.SaveChanges();
+        }
+
+        public ActionResult ListaFacturas()
+        {
+            int id = (int)Session["User"];
+            var lista = new List<ListaFacturas>();
+            if (id != 0)
+            {
+                using (ProyectoEntities1 db = new ProyectoEntities1())
+                {
+                    var detalleFactura = from c in db.Clientes
+                                         join f in db.Facturas on c.idCliente equals f.idCliente
+                                         join cv in db.ClienteVehiculoes on c.idCliente equals cv.idCliente
+                                         join v in db.Vehiculos on cv.idVehiculo equals v.IdVehiculo
+                                         where f.idMecanico == id
+                                         select new { idFactura = f.idFactura, nombreCliente = c.Nombre, marca = v.Marca, modelo = v.Modelo, f.Monto};
+                    foreach (var factura in detalleFactura.ToList())
+                    {
+                        var model = new ListaFacturas() { idFactura = factura.idFactura, NombreCliente = factura.nombreCliente, MarcaCarro = factura.marca, ModeloCarro = factura.modelo, Monto = (double)factura.Monto };
+                        lista.Add(model);
+                    }
+                }
+            }
+            return View(lista);
         }
     }
 }

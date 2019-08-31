@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ProyectoPrograV.Models.ListaFacturas>
+    @{
+        ViewBag.Title = "ListaFacturas";
+    }
+
+    <h2>ListaFacturas</h2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idFactura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MarcaCarro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModeloCarro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Monto)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idFactura)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MarcaCarro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModeloCarro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Monto)
+                </td>
+            </tr>
+        }
+    </table>

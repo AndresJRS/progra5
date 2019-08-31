@@ -5,9 +5,8 @@
 }
 
 <h2>Detalles del vehiculo</h2>
-@using (Html.BeginForm("arreglado", "Mecanicos"))
-{
-    foreach (var item in Model)
+
+    @foreach (var item in Model)
     {
         <div class="container">
             <div class="form-group">
@@ -55,9 +54,13 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Arreglado" class="btn btn-default" />
+                    
+                    <form action="@Url.Content("~/RegistroMecanicoes/Facturar")" method="post">
+                        <input type="text" name="idSolicitud" value="@item.id" hidden />
+                        <input type="submit" value="Facturar" name="arreglado" class="btn btn-default" />
+                    </form>
                 </div>
             </div>
         </div>
     }
-}
+
