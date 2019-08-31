@@ -1,57 +1,54 @@
-﻿@model IEnumerable<ProyectoPrograV.Models.Mecanico>
+﻿@model IEnumerable<ProyectoPrograV.Models.Solicitudes>
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMecanicos.cshtml";
 }
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Telefono)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UsuarioMecanico)
+            @Html.DisplayNameFor(model => model.Detalle)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Contraseña)
+            @Html.DisplayNameFor(model => model.Placa)
+        </th>
+        <th>
+            Acciones
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UsuarioMecanico)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Contraseña)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idMecanico }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idMecanico }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idMecanico })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Detalle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Placa)
+            </td>
+            <td>
+                <form action="@Url.Content("~/RegistroMecanicoes/ActualizarEstado")">
+                    <input type="text" name="idSolicitud" value="@item.id" hidden />
+                    <button type="submit" class="btn btn-success">Aceptar</button>
+                </form>
 
+            </td>
+        </tr>
+    }
 </table>

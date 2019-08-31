@@ -24,18 +24,14 @@ namespace ProyectoPrograV.Controllers
             {
                 using (ProyectoEntities1 db = new ProyectoEntities1())
                 {
-                    var lista = db.Clientes.Where(x => x.UsuarioCliente.Equals(usuario) && x.Contraseña.Equals(contraseña)).ToList();
-
-
+                    var lista = db.Mecanicos.Where(x => x.UsuarioMecanico.Equals(usuario) && x.Contraseña.Equals(contraseña)).ToList();
                     if (lista.Count() == 1)
                     {
-
                         var idUsuario = (from s in lista
-                                        select s.idCliente).First();
+                                         select s.idMecanico).First();
                         Session["User"] = idUsuario;
 
-
-                        return RedirectToAction("Create", "Solicituds", "");
+                        return RedirectToAction("Index", "Solicituds", "");
                     }
                     else
                     {

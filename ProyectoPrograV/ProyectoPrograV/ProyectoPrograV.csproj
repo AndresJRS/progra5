@@ -266,6 +266,7 @@
     <Content Include="Views\ClientesRegistro\Details.cshtml" />
     <Content Include="Views\ClientesRegistro\Edit.cshtml" />
     <Content Include="Views\ClientesRegistro\Index.cshtml" />
+    <Content Include="Views\RegistroMecanicoes\ActualizarEstado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProyectoPrograV.Models.Solicitudes>
+
+@{
+    ViewBag.Title = "Arreglando";
+}
+
+<h2>Detalles del vehiculo</h2>
+@using (Html.BeginForm("arreglado", "Mecanicos"))
+{
+    foreach (var item in Model)
+    {
+        <div class="container">
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" class="form-control" aria-describedby="Nombre de cliente" value="@item.Nombre" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="telefono">Telefono</label>
+                    <input type="text" id="telefono" class="form-control" aria-describedby="Telefono de cliente" value="@item.Telefono" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="detalle">Detalle</label>
+                    <input type="text" id="detalle" class="form-control" aria-describedby="Detalle" value="@item.Detalle" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="placa">Placa</label>
+                    <input type="text" id="placa" class="form-control" aria-describedby="Placa" value="@item.Placa" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="marca">Marc</label>
+                    <input type="text" id="marca" class="form-control" aria-describedby="Marca" value="@item.Marca" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="modelo">Modelo</label>
+                    <input type="text" id="modelo" class="form-control" aria-describedby="Modelo" value="@item.Modelo" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="color">Color</label>
+                    <input type="text" id="color" class="form-control" aria-describedby="Color" value="@item.Color" disabled>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Arreglado" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+}
